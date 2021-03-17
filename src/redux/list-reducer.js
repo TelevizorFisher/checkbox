@@ -19,6 +19,7 @@ let initialState = {
     { id: 8, name: "H", checked: false },
     { id: 9, name: "I", checked: false },
   ],
+  listAllChoice: [{}],
   listAll: [{}],
 };
 
@@ -56,12 +57,14 @@ const listReducer = (state = initialState, action) => {
     }
     case SUBMIT_NEW: {
       let listAll = state.list1.concat(state.list2, state.list3);
-      console.log(`listAll`, listAll);
-      console.log(`list`, state.list);
-
+      let listAllChoice = state.list1.concat(state.list2, state.list3);
+      let number = Object.keys(listAllChoice).length;
+      console.log(`number`, number);
       return {
         ...state,
         listAll: listAll.map((i) => (i.checked === true ? i : "")),
+        number: number,
+        listAllChoice: listAllChoice,
       };
     }
     default:
